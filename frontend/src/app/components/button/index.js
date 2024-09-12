@@ -1,3 +1,4 @@
+
 import React from 'react';
 import './index.css';
 
@@ -8,3 +9,4 @@ export default function Button({ label, onClick }) {
     </button>
   );
 }
+
