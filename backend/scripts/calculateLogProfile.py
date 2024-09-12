@@ -52,10 +52,8 @@ def calculate_log_profile():
         "input_reference_height": original__z_ref,
         "desired_output_height": desired__z_ref,
         "output_wind_speed": expected__u_ref,
-        "full_profile": {
-            "heights": filtered_zVals,
-            "wind_speeds": filtered_vals
-        }
+        "heights": filtered_zVals,
+        "wind_speeds": filtered_vals
     }
     
     # Print the response to Flask logs

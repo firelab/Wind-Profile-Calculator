@@ -25,28 +25,33 @@ export default function Graph({ data }) {
     labels: windSpeeds, // X-axis labels (wind speeds)
     datasets: [
       {
+        label: 'Input Point',
+        data: [{ x: inputWindSpeed, y: inputReferenceHeight }],
+        backgroundColor: 'rgb(255, 99, 132)', // Color for input point
+        borderColor: 'rgb(255, 99, 132)', // Color for input point
+        pointRadius: 10, // Size of the input point
+        pointBorderWidth: 3,
+        pointStyle: 'star', // Change to star
+        zIndex: 2, // Ensure points are on top
+      },
+      {
+        label: 'Output Point',
+        data: [{ x: outputWindSpeed, y: desiredOutputHeight }],
+        backgroundColor: 'rgb(54, 162, 235)', // Color for output point
+        borderColor: 'rgb(54, 162, 235)', // Color for output point
+        pointRadius: 10, // Size of the output point
+        pointBorderWidth: 3,
+        pointStyle: 'star', // Change to star
+        zIndex: 2, // Ensure points are on top
+      },
+      {
         label: 'Height (m)',
-        data: heights, // Y-axis data (heights)
+        data: heights.map((height, index) => ({ x: windSpeeds[index], y: height })), // Mapping heights to x, y objects
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
         tension: 0.1,
+        pointRadius: 0, // Hide points on the line
       },
-      {
-        label: 'Input Wind Speed',
-        data: windSpeeds.map(speed => (speed === inputWindSpeed ? inputReferenceHeight : NaN)),
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        pointRadius: 5,
-        pointStyle: 'rect',
-      },
-      {
-        label: 'Desired Output',
-        data: windSpeeds.map(speed => (speed === outputWindSpeed ? desiredOutputHeight : NaN)),
-        borderColor: 'rgb(54, 162, 235)',
-        backgroundColor: 'rgba(54, 162, 235, 0.5)',
-        pointRadius: 5,
-        pointStyle: 'circle',
-      }
     ],
   };
 

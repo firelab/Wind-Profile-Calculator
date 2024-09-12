@@ -29,16 +29,11 @@ export default function InputForm() {
         body: JSON.stringify(payload)
       });
   
-      // Check if the response is okay (status code 200-299)
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-  
       // Get the JSON response from the backend
       const data = await response.json();
       
       // Update the graph data state
-      setGraphData(data.full_profile);
+      setGraphData(data);
   
     } catch (error) {
       console.error('Error:', error);
