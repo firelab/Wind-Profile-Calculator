@@ -29,9 +29,9 @@ export default function Graph({ data }) {
         data: [{ x: inputWindSpeed, y: inputReferenceHeight }],
         backgroundColor: 'rgb(255, 99, 132)', // Color for input point
         borderColor: 'rgb(255, 99, 132)', // Color for input point
-        pointRadius: 10, // Size of the input point
-        pointBorderWidth: 3,
-        pointStyle: 'star', // Change to star
+        pointRadius: 5, // Size of the input point
+        pointBorderWidth: 2,
+        pointStyle: 'circle', // Change to star
         zIndex: 2, // Ensure points are on top
       },
       {
@@ -39,9 +39,9 @@ export default function Graph({ data }) {
         data: [{ x: outputWindSpeed, y: desiredOutputHeight }],
         backgroundColor: 'rgb(54, 162, 235)', // Color for output point
         borderColor: 'rgb(54, 162, 235)', // Color for output point
-        pointRadius: 10, // Size of the output point
-        pointBorderWidth: 3,
-        pointStyle: 'star', // Change to star
+        pointRadius: 5, // Size of the output point
+        pointBorderWidth: 2,
+        pointStyle: 'circle', // Change to star
         zIndex: 2, // Ensure points are on top
       },
       {
@@ -89,7 +89,6 @@ export default function Graph({ data }) {
 
   return (
     <div className="graph-container">
-      <h2 className="graph-title">Wind Speed Profile</h2>
       <Line data={chartData} options={options} />
     </div>
   );

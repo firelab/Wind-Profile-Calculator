@@ -55,10 +55,7 @@ def calculate_log_profile():
         "heights": filtered_zVals,
         "wind_speeds": filtered_vals
     }
-    
-    # Print the response to Flask logs
-    print('Response data: %s', response_data)
-    
+
     return jsonify(response_data)
 
 if __name__ == '__main__':
