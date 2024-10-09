@@ -1,0 +1,18 @@
+/* Center the question in MultipleChoice */
+.multiple-choice {
+    text-align: center; /* Center text */
+  }
+  
+  /* Use grid layout for options */
+  .options-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Create two equal columns */
+    gap: 20px; /* Space between options */
+    margin-top: 10px; /* Space between question and options */
+  }
+  
+  /* Style for each radio option container */
+  .radio-container {
+    display: flex;
+    align-items: center; /* Align items vertically */
+  }

@@ -3,7 +3,7 @@ import InputField from '../inputField/index.js';
 import Button from '../button/index.js';
 import Graph from '../graph/index.js'; // Import the Graph component
 
-export default function InputForm() {
+export default function LogProfileForm() {
   const [z0, setZ0] = useState('');
   const [inputWindSpeed, setInputWindSpeed] = useState('');
   const [inputReferenceHeight, setInputReferenceHeight] = useState('');

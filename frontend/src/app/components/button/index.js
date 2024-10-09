@@ -3,7 +3,7 @@ import './index.css';
 
 export default function Button({ label, onClick }) {
   return (
-    <button className="custom-button" onClick={onClick}>
+    <button className="button" onClick={onClick}> 
       {label}
     </button>
   );

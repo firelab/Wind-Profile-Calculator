@@ -1,81 +1,78 @@
 import React, { useState } from 'react';
 import './index.css';
-import InputForm from './components/inputForm/index.js';
-import DoubleGaussianDistributionForm from './components/doubleGaussianDistributionForm';
+import ToggleSlider from './components/toggleSlider/index.js';
+import MultipleChoice from './components/multipleChoice/index.js';
 import NormalDistributionForm from './components/normalDistributionForm';
-import TriangleDistributionForm from './components/triangleDistributionForm';
 import MassmanDistributionForm from './components/massmanDistributionForm';
+import DoubleGaussianDistributionForm from './components/doubleGaussianDistributionForm';
+import TriangleDistributionForm from './components/triangleDistributionForm';
+import LogProfileForm from './components/logProfileForm'; // Import LogProfileForm
 
 export default function App() {
-  const [hasCanopy, setHasCanopy] = useState('');
-  const [selectedDistribution, setSelectedDistribution] = useState('');
+  const [hasCanopy, setHasCanopy] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('');
 
-  const handleCanopyChange = (event) => {
-    setHasCanopy(event.target.value);
-    // Reset the distribution selection when changing canopy selection
-    setSelectedDistribution('');
-  };
-
-  const handleDistributionChange = (event) => {
-    setSelectedDistribution(event.target.value);
-  };
-
-  const renderDistributionSelector = () => {
-    if (hasCanopy === '') {
-      return null; // Hide distribution selector if there is no canopy
-    } else if (hasCanopy === 'no') {
-      return <InputForm />;
-    }
-
-    return (
-      <div>
-        <select value={selectedDistribution} onChange={handleDistributionChange}>
-          <option value="">Select Canopy Distribution</option>
-          <option value="doubleGaussian">Double Gaussian Distribution</option>
-          <option value="normal">Normal Distribution</option>
-          <option value="triangle">Triangle Distribution</option>
-          <option value="massman">Massman Distribution</option>
-        </select>
-        {renderDistributionForm()}
-      </div>
-    );
-  };
-
-  const renderDistributionForm = () => {
-    if (hasCanopy === 'yes') {
-      // Show corresponding form based on distribution selection
-      switch (selectedDistribution) {
-        case 'doubleGaussian':
-          return <DoubleGaussianDistributionForm onSubmit={handleSubmit} />;
-        case 'normal':
-          return <NormalDistributionForm onSubmit={handleSubmit} />;
-        case 'triangle':
-          return <TriangleDistributionForm onSubmit={handleSubmit} />;
-        case 'massman':
-          return <MassmanDistributionForm onSubmit={handleSubmit} />;
-        default:
-          return null; // No form to display if no distribution is selected
-      }
-    } else {
-      // Show original input form if there's no canopy
-      return <InputForm />;
+  // Handle slider change: toggle canopy presence
+  const handleCanopyChange = () => {
+    console.log('Toggling canopy state');
+    setHasCanopy((prev) => !prev);
+    // Reset selected option when toggling to "No Canopy"
+    if (hasCanopy) {
+      setSelectedOption('');
     }
   };
 
-  const handleSubmit = (data) => {
-    // Handle the submission data
-    console.log('Submitted data:', data);
+  const options = [
+    { value: 'option1', label: 'Normal', component: NormalDistributionForm },
+    { value: 'option2', label: 'Massman', component: MassmanDistributionForm },
+    { value: 'option3', label: 'Double Gaussian', component: DoubleGaussianDistributionForm },
+    { value: 'option4', label: 'Triangle', component: TriangleDistributionForm },
+  ];
+
+  // Handle the selection change from the MultipleChoice component
+  const handleMultipleChoiceChange = (value) => {
+    setSelectedOption(value);
+    console.log('Selected option:', value);
+  };
+
+  const renderForm = () => {
+    const selected = options.find(option => option.value === selectedOption);
+    if (selected) {
+      const FormComponent = selected.component; // Get the form component
+      return <FormComponent onSubmit={(data) => console.log('Form submitted:', data)} />;
+    }
+    return null;
   };
 
   return (
     <div className="App">
-      <h1>Log Profile Calculator</h1>
-      <select value={hasCanopy} onChange={handleCanopyChange}>
-        <option value="">Select Canopy Option</option>
-        <option value="yes">Yes, there is a canopy</option>
-        <option value="no">No, there is no canopy</option>
-      </select>
-      {renderDistributionSelector()}
+      <h1>Canopy Calculator</h1>
+
+      {/* Canopy Toggle Section */}
+      <div className="canopy-section">
+        <p>Is there a canopy?</p>
+        <div className="toggle-wrapper">
+          <span>No Canopy</span>
+          <ToggleSlider onClick={handleCanopyChange} />
+          <span>Yes Canopy</span>
+        </div>
+      </div>
+
+      {/* Render LogProfileForm if there is no canopy */}
+      {!hasCanopy && <LogProfileForm />}
+
+      {/* Render MultipleChoice and its corresponding form only when there is a canopy */}
+      {hasCanopy && (
+        <>
+          <MultipleChoice
+            question="What type of canopy do you have?"
+            options={options}
+            onChange={handleMultipleChoiceChange}
+          />
+          {/* Render the selected distribution form if an option is selected */}
+          {selectedOption && renderForm()}
+        </>
+      )}
     </div>
   );
 }
