@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import InputField from '../inputField/index.js';
-import Button from '../button/index.js';
+import InputField from '../../inputField/index.js';
+import Button from '../../button/index.js';
+
 
 export default function NormalDistributionForm({ onSubmit }) {
   const [heightMaxFoliageDist, setHeightMaxFoliageDist] = useState(0.5);
@@ -22,11 +23,12 @@ export default function NormalDistributionForm({ onSubmit }) {
 
   return (
     <div>
-      <InputField label="Max Foliage Height" value={heightMaxFoliageDist} onChange={setHeightMaxFoliageDist} />
-      <InputField label="Standard Deviation" value={standardDevFoliageDist} onChange={setStandardDevFoliageDist} />
-      <InputField label="Leaf Area Index" value={leafAreaIndex} onChange={setLeafAreaIndex} />
-      <InputField label="Canopy Height (m)" value={canopyHeight} onChange={setCanopyHeight} />
-      <InputField label="Drag Coefficient" value={dragCoefAth} onChange={setDragCoefAth} />
+      <h3>Normal Distribution Inputs</h3>
+      <InputField label="Max Foliage Height" placeholder={"Enter Value"} value={heightMaxFoliageDist} onChange={setHeightMaxFoliageDist} />
+      <InputField label="Standard Deviation" placeholder={"Enter Value"} value={standardDevFoliageDist} onChange={setStandardDevFoliageDist} />
+      <InputField label="Leaf Area Index" placeholder={"Enter Value"} value={leafAreaIndex} onChange={setLeafAreaIndex} />
+      <InputField label="Canopy Height (m)" placeholder={"Enter Value"} value={canopyHeight} onChange={setCanopyHeight} />
+      <InputField label="Drag Coefficient" placeholder={"Enter Value"} value={dragCoefAth} onChange={setDragCoefAth} />
       <Button label="Generate" onClick={handleGenerateClick} />
     </div>
   );
