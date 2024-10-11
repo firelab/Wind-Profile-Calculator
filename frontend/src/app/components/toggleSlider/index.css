@@ -1,17 +1,31 @@
-/* index.css */
+/* Canopy Section styling */
+.canopy-section {
+    margin: 0px 0; /* Space around the canopy section */
+    display: flex; /* Ensure it uses flex for consistent alignment */
+    align-items: center; /* Center items vertically */
+  }
 
-.toggle-slider {
+/* Wrapper for the toggle switch and text */
+.toggle-container {
     display: inline-flex;
-    align-items: center;
-    cursor: pointer;
+    align-items: center; /* Vertically align text and slider */
+    padding-left: 0; /* Remove any unwanted padding on the left */
   }
   
+  /* Toggle switch styling */
+  .toggle-slider {
+    display: inline-flex;
+    align-items: center; /* Center the slider and checkbox */
+  }
+  
+  /* Style for the hidden checkbox */
   .toggle-slider input {
     opacity: 0; /* Hide the checkbox */
     width: 0;
     height: 0;
   }
   
+  /* Slider style */
   .slider {
     position: relative;
     width: 60px; /* Width of the slider */
@@ -19,9 +33,10 @@
     background-color: #ccc; /* Default background color */
     border-radius: 34px; /* Round edges */
     transition: background-color 0.2s ease;
+    margin-right: 15px; /* Add margin to the right for space between the slider and text */
   }
   
-  /* The slider's circle */
+  /* Slider circle */
   .slider:before {
     position: absolute;
     content: '';
@@ -34,12 +49,12 @@
     transition: transform 0.2s ease; /* Animation */
   }
   
-  /* When the checkbox is checked, change the slider's background color */
+  /* Change background color when checked */
   input:checked + .slider {
     background-color: #4caf50; /* Color when checked */
   }
   
-  /* Move the circle to the right when checked */
+  /* Move the circle when checked */
   input:checked + .slider:before {
     transform: translateX(26px); /* Move the circle */
   }

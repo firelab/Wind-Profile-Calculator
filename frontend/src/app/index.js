@@ -25,7 +25,7 @@ export default function App() {
   const options = [
     { value: 'option1', label: 'Normal', component: NormalDistributionForm },
     { value: 'option2', label: 'Massman', component: MassmanDistributionForm },
-    { value: 'option3', label: 'Double Gaussian', component: DoubleGaussianDistributionForm },
+    { value: 'option3', label: 'Gaussian', component: DoubleGaussianDistributionForm },
     { value: 'option4', label: 'Triangle', component: TriangleDistributionForm },
   ];
 
@@ -50,15 +50,16 @@ export default function App() {
 
       {/* Canopy Toggle Section */}
       <div className="canopy-section">
-        <p>Is there a canopy?</p>
-        <div className="toggle-wrapper">
-          <span>No Canopy</span>
-          <ToggleSlider onClick={handleCanopyChange} />
-          <span>Yes Canopy</span>
-        </div>
-      </div>
+      <h3>Is there a canopy?</h3>
+      <ToggleSlider
+        onClick={handleCanopyChange}
+        isChecked={hasCanopy}
+        yesText="Yes"  // Text for the "Yes" state
+        noText="No"    // Text for the "No" state
+      />
+    </div>
 
-      {/* Render LogProfileForm if there is no canopy */}
+    {/* Render LogProfileForm if there is no canopy */}
       {!hasCanopy && <LogProfileForm />}
 
       {/* Render MultipleChoice and its corresponding form only when there is a canopy */}

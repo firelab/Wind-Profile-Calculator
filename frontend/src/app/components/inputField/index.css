@@ -1,12 +1,4 @@
-.input-field-container {
-    margin-bottom: 20px; /* Space between each input field */
-    text-align: left; /* Aligns the input fields to the left */
-    width: 100%;
-    max-width: 400px; /* Limits the width of the input fields */
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
+
   input {
     margin: 10px;
     width: 30%;

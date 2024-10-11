@@ -1,6 +1,17 @@
 .App {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center horizontally */
+  align-items: flex-start; /* Fix: align-items: left is invalid; use flex-start for left alignment */
   min-height: 100vh; /* Make sure it covers full viewport height */
+  padding-left: 20px; /* Add padding to the left */
+  padding-right: 20px; /* Optional: Add right padding for balance */
+}
+
+.parent-container {
+  position: relative;    /* Allows absolute positioning for children */
+  width: 100%;           /* Full width of the parent */
+  height: 100vh;        /* Full height of the viewport */
+  display: flex;         /* Enables flex properties */
+  justify-content: flex-start; /* Align items to the left */
+  align-items: center;   /* Center items vertically */
 }

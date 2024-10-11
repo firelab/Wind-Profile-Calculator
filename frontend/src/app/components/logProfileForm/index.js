@@ -4,10 +4,10 @@ import Button from '../button/index.js';
 import Graph from '../graph/index.js'; // Import the Graph component
 
 export default function LogProfileForm() {
-  const [z0, setZ0] = useState('');
-  const [inputWindSpeed, setInputWindSpeed] = useState('');
-  const [inputReferenceHeight, setInputReferenceHeight] = useState('');
-  const [desiredOutputHeight, setDesiredOutputHeight] = useState('');
+  const [z0, setZ0] = useState('0.43');
+  const [inputWindSpeed, setInputWindSpeed] = useState('4');
+  const [inputReferenceHeight, setInputReferenceHeight] = useState('10');
+  const [desiredOutputHeight, setDesiredOutputHeight] = useState('6.096');
   const [graphData, setGraphData] = useState(null); // State for graph data
 
   const handleGenerateClick = async () => {
