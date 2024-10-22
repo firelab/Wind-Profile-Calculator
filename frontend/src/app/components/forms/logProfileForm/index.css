@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100vh; /* Full viewport height to ensure the form and graph take up full screen height */
+  }
+
+  
+  .graph-section {
+    flex-grow: 1; /* This will make the graph section take up the remaining space on the right */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .graph-section canvas, .graph-section svg {
+    width: 150%;
+    height: 150%;
+    max-height: 90vh; /* Limit max height to prevent the graph from exceeding the viewport */
+  }
+  

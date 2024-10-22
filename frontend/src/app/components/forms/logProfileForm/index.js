@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import InputField from '../../inputField/index.js';
 import Button from '../../button/index.js';
 import Graph from '../../graph/index.js'; // Import the Graph component
+import './index.css'; // Import the CSS file for styling
 
 export default function LogProfileForm() {
   const [z0, setZ0] = useState('0.43');
@@ -41,16 +42,20 @@ export default function LogProfileForm() {
   };
 
   return (
-    <div>
-      <h3>Log Profile Inputs</h3>
-      <InputField label="z0 [m]" placeholder="Enter value" value={z0} onChange={setZ0} />
-      <InputField label="Input Wind Speed [m/s]" placeholder="Enter value" value={inputWindSpeed} onChange={setInputWindSpeed} />
-      <InputField label="Input Reference Height [m]" placeholder="Enter value" value={inputReferenceHeight} onChange={setInputReferenceHeight} />
-      <InputField label="Desired Output Height [m]" placeholder="Enter value" value={desiredOutputHeight} onChange={setDesiredOutputHeight} />
-      <Button label="Generate" onClick={handleGenerateClick} />
-      
-      {/* Render the Graph component with the graph data */}
-      <Graph data={graphData} />
+    <div className="container">
+      <div className="form-section">
+        <h3>Log Profile Inputs</h3>
+        <InputField label="z0 [m]" placeholder="Enter value" value={z0} onChange={setZ0} />
+        <InputField label="Input Wind Speed [m/s]" placeholder="Enter value" value={inputWindSpeed} onChange={setInputWindSpeed} />
+        <InputField label="Input Reference Height [m]" placeholder="Enter value" value={inputReferenceHeight} onChange={setInputReferenceHeight} />
+        <InputField label="Desired Output Height [m]" placeholder="Enter value" value={desiredOutputHeight} onChange={setDesiredOutputHeight} />
+        <Button label="Generate" onClick={handleGenerateClick} />
+      </div>
+
+      <div className="graph-section">
+        {/* Render the Graph component with the graph data */}
+        <Graph data={graphData} style={{ width: '100%', height: '100%' }} /> {/* Force the graph to fill space */}
+      </div>
     </div>
   );
 }

@@ -24,7 +24,7 @@ export default function DoubleGaussianDistributionForm({ onSubmit }) {
 
   return (
     <div>
-      <h3>Double Gaussian Distribution Inputs</h3>
+      <h3>Asymmetric Gaussian Distribution Inputs</h3>
       <InputField label="Max Foliage Height" placeholder={"Enter Value"} value={heightMaxFoliageDist} onChange={setHeightMaxFoliageDist} />
       <InputField label="Upper Standard Deviation" placeholder={"Enter Value"} value={standardDevFoliageUpper} onChange={setStandardDevFoliageUpper} />
       <InputField label="Lower Standard Deviation" placeholder={"Enter Value"} value={standardDevFoliageLower} onChange={setStandardDevFoliageLower} />
