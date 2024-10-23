@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import InputField from '../../inputField/index.js';
-import Button from '../../button/index.js';
 
-
-export default function TriangleDistributionForm({ onSubmit }) {
+export default function TriangleDistributionForm({ onChange }) {
   const [A1, setA1] = useState(0.32);
   const [Ax, setAx] = useState(1.0);
   const [Ab, setAb] = useState(0.02);
@@ -13,8 +11,10 @@ export default function TriangleDistributionForm({ onSubmit }) {
   const [canopyHeight, setCanopyHeight] = useState(10.0);
   const [dragCoefAth, setDragCoefAth] = useState(0.2);
 
-  const handleGenerateClick = () => {
-    const payload = {
+  // useEffect to propagate form data to the parent whenever inputs change
+  useEffect(() => {
+    const formData = {
+      distribution: "tri",
       A1,
       Ax,
       Ab,
@@ -24,8 +24,9 @@ export default function TriangleDistributionForm({ onSubmit }) {
       canopyHeight,
       dragCoefAth,
     };
-    onSubmit(payload); // Call the parent function to handle submission
-  };
+
+    onChange(formData); // Automatically send the updated form data to the parent
+  }, [A1, Ax, Ab, zmax, zbot, leafAreaIndex, canopyHeight, dragCoefAth, onChange]);
 
   return (
     <div>
@@ -38,7 +39,6 @@ export default function TriangleDistributionForm({ onSubmit }) {
       <InputField label="Leaf Area Index" placeholder={"Enter Value"} value={leafAreaIndex} onChange={setLeafAreaIndex} />
       <InputField label="Canopy Height (m)" placeholder={"Enter Value"} value={canopyHeight} onChange={setCanopyHeight} />
       <InputField label="Drag Coefficient" placeholder={"Enter Value"} value={dragCoefAth} onChange={setDragCoefAth} />
-      <Button label="Generate" onClick={handleGenerateClick} />
     </div>
   );
 }

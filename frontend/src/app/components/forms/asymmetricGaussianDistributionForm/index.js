@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import InputField from '../../inputField/index.js';
-import Button from '../../button/index.js';
 
-export default function DoubleGaussianDistributionForm({ onSubmit }) {
+export default function AsymmetricGaussianDistributionForm({ onChange }) {
   const [heightMaxFoliageDist, setHeightMaxFoliageDist] = useState(0.36);
   const [standardDevFoliageUpper, setStandardDevFoliageUpper] = useState(0.6);
   const [standardDevFoliageLower, setStandardDevFoliageLower] = useState(0.2);
@@ -10,8 +9,10 @@ export default function DoubleGaussianDistributionForm({ onSubmit }) {
   const [canopyHeight, setCanopyHeight] = useState(8.0);
   const [dragCoefAth, setDragCoefAth] = useState(0.2);
 
-  const handleGenerateClick = () => {
-    const payload = {
+  // useEffect to propagate form data to the parent whenever inputs change
+  useEffect(() => {
+    const formData = {
+      distribution: "asy", // Adding the distribution type
       heightMaxFoliageDist,
       standardDevFoliageUpper,
       standardDevFoliageLower,
@@ -19,8 +20,9 @@ export default function DoubleGaussianDistributionForm({ onSubmit }) {
       canopyHeight,
       dragCoefAth,
     };
-    onSubmit(payload); // Call the parent function to handle submission
-  };
+
+    onChange(formData); // Automatically send the updated form data to the parent
+  }, [heightMaxFoliageDist, standardDevFoliageUpper, standardDevFoliageLower, leafAreaIndex, canopyHeight, dragCoefAth, onChange]);
 
   return (
     <div>
@@ -31,7 +33,6 @@ export default function DoubleGaussianDistributionForm({ onSubmit }) {
       <InputField label="Leaf Area Index" placeholder={"Enter Value"} value={leafAreaIndex} onChange={setLeafAreaIndex} />
       <InputField label="Canopy Height (m)" placeholder={"Enter Value"} value={canopyHeight} onChange={setCanopyHeight} />
       <InputField label="Drag Coefficient" placeholder={"Enter Value"} value={dragCoefAth} onChange={setDragCoefAth} />
-      <Button label="Generate" onClick={handleGenerateClick} />
     </div>
   );
 }

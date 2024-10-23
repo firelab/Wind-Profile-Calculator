@@ -2,7 +2,6 @@ import numpy as np  # Ensure you have numpy imported
 
 kappa = 0.41
 
-
 def calc_ustar(kappa, u_ref, z_ref, z0):
     """
     Calculate friction velocity (u*) based on the logarithmic wind profile.
