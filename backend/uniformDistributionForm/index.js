@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import InputField from '../../inputField/index.js';
+import React, { useState } from 'react';
+import InputField from '../../frontend/src/app/components/inputField/index.js';
 
 export default function UniformDistributionForm({ onChange }) {
   const [crownRatio, setCrownRatio] = useState(0.7);
@@ -7,8 +7,8 @@ export default function UniformDistributionForm({ onChange }) {
   const [canopyHeight, setCanopyHeight] = useState(8.0);
   const [dragCoefAth, setDragCoefAth] = useState(0.2);
 
-  // useEffect to propagate form data to the parent whenever inputs change
-  useEffect(() => {
+  // Function to handle sending the form data when the button is clicked
+  const handleSubmit = () => {
     const formData = {
       distribution: "uni",
       crownRatio,
@@ -17,8 +17,8 @@ export default function UniformDistributionForm({ onChange }) {
       dragCoefAth,
     };
 
-    onChange(formData); // Automatically send the updated form data to the parent
-  }, [crownRatio, leafAreaIndex, canopyHeight, dragCoefAth, onChange]);
+    onChange(formData); // Send the updated form data to the parent
+  };
 
   return (
     <div>

@@ -18,12 +18,33 @@ CORS(app)
 def calculate():
     data = request.json  # Get the JSON data from the request
     dist = data.get('distribution')  # Extract the distribution type
-    
+
+    heights = canopyFlowSwig.DoubleVector()
+    windSpeeds = canopyFlowSwig.DoubleVector()
+
     # Process based on distribution type
     if dist == 'log':
         # Handle 'log' distribution logic here
         print("Processing Log distribution")
-        print(f"Log distribution data: {data}")
+
+        # compute_log_profile(z0_val, original_u_ref, original_z_ref, desired_z_ref)
+        '''
+          useEffect(() => {
+    const formData = {
+      distribution: "log",
+      z0: parseFloat(z0),
+      inputWindSpeed: parseFloat(inputWindSpeed),
+      inputReferenceHeight: parseFloat(inputReferenceHeight),
+      desiredOutputHeight: parseFloat(desiredOutputHeight),
+    };
+        '''
+        heights, windSpeeds, expectedOutput = calcLogProfile.compute_log_profile(float(data.get('z0')), float(data.get('inputWindSpeed')), float(data.get('inputReferenceHeight')), float(data.get('desiredOutputHeight')))
+
+        responseData = {
+            "heights": list(heights),
+            "windSpeeds": list(windSpeeds)
+        }
+    
     elif dist == 'unfi':
         # Handle 'unfi' distribution logic here
         print("Processing Uniform distribution")
@@ -47,7 +68,7 @@ def calculate():
     else:
         print(f"Unknown distribution: {dist}")
 
-    return jsonify({"message": "Data received", "data": data})  # Return a response
+    return jsonify(responseData) 
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

@@ -7,53 +7,40 @@ import './index.css'; // Import CSS for styling
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 export default function Graph({ data }) {
-  // If no data is provided, return null
-  if (!data || !data.heights || !data.wind_speeds) {
+  // Log the incoming data for debugging
+  console.log("Graph Data Received:", data);
+  
+  // If no data is provided, return a message
+  if (!data || !data.heights || !data.windSpeeds) {
+    console.warn("No data available for graph.");
     return <p>No data available</p>;
   }
 
   // Extract values for plotting
-  const heights = data.heights;
-  const windSpeeds = data.wind_speeds;
-  const inputWindSpeed = data.input_wind_speed;
-  const inputReferenceHeight = data.input_reference_height;
-  const outputWindSpeed = data.output_wind_speed;
-  const desiredOutputHeight = data.desired_output_height;
+  const heights = data.heights; // Y-axis data
+  const windSpeeds = data.windSpeeds; // X-axis data
+
+  // Log the heights and wind speeds before preparing chart data
+  console.log("Heights:", heights);
+  console.log("Wind Speeds:", windSpeeds);
 
   // Prepare chart data
   const chartData = {
     labels: windSpeeds, // X-axis labels (wind speeds)
     datasets: [
       {
-        label: 'Input Point',
-        data: [{ x: inputWindSpeed, y: inputReferenceHeight }],
-        backgroundColor: 'rgb(255, 99, 132)', // Color for input point
-        borderColor: 'rgb(255, 99, 132)', // Color for input point
-        pointRadius: 5, // Size of the input point
-        pointBorderWidth: 2,
-        pointStyle: 'circle', // Change to star
-        zIndex: 2, // Ensure points are on top
-      },
-      {
-        label: 'Output Point',
-        data: [{ x: outputWindSpeed, y: desiredOutputHeight }],
-        backgroundColor: 'rgb(54, 162, 235)', // Color for output point
-        borderColor: 'rgb(54, 162, 235)', // Color for output point
-        pointRadius: 5, // Size of the output point
-        pointBorderWidth: 2,
-        pointStyle: 'circle', // Change to star
-        zIndex: 2, // Ensure points are on top
-      },
-      {
-        label: 'Height (m)',
+        label: 'Height vs Wind Speed',
         data: heights.map((height, index) => ({ x: windSpeeds[index], y: height })), // Mapping heights to x, y objects
         fill: false,
-        borderColor: 'rgb(75, 192, 192)',
+        borderColor: 'rgb(75, 192, 192)', // Line color
         tension: 0.1,
-        pointRadius: 0, // Hide points on the line
+        pointRadius: 2, // Size of points on the line
       },
     ],
   };
+
+  // Log the chart data before rendering
+  console.log("Chart Data Prepared:", chartData);
 
   const options = {
     responsive: true,
@@ -80,7 +67,7 @@ export default function Graph({ data }) {
       tooltip: {
         callbacks: {
           label: function (tooltipItem) {
-            return `Value: ${tooltipItem.raw}`;
+            return `Height: ${tooltipItem.raw.y} m, Wind Speed: ${tooltipItem.raw.x} m/s`;
           },
         },
       },

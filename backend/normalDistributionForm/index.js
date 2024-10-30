@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import InputField from '../../inputField/index.js';
+import React, { useState } from 'react';
+import InputField from '../../frontend/src/app/components/inputField/index.js';
 
 export default function NormalDistributionForm({ onChange }) {
   const [heightMaxFoliageDist, setHeightMaxFoliageDist] = useState(0.5);
@@ -8,8 +8,8 @@ export default function NormalDistributionForm({ onChange }) {
   const [canopyHeight, setCanopyHeight] = useState(3.0);
   const [dragCoefAth, setDragCoefAth] = useState(0.2);
 
-  // useEffect to propagate form data to the parent component whenever inputs change
-  useEffect(() => {
+  // Function to handle sending the form data when the button is clicked
+  const handleSubmit = () => {
     const formData = {
       distribution: "norm",
       heightMaxFoliageDist,
@@ -20,7 +20,7 @@ export default function NormalDistributionForm({ onChange }) {
     };
 
     onChange(formData); // Send the updated form data to the parent
-  }, [heightMaxFoliageDist, standardDevFoliageDist, leafAreaIndex, canopyHeight, dragCoefAth, onChange]);
+  };
 
   return (
     <div>

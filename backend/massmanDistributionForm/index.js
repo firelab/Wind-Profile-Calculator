@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import InputField from '../../inputField/index.js';
+import React, { useState } from 'react';
+import InputField from '../../frontend/src/app/components/inputField/index.js';
 
 export default function MassmanDistributionForm({ onChange }) {
   const [A1, setA1] = useState(1.10);
@@ -10,8 +10,8 @@ export default function MassmanDistributionForm({ onChange }) {
   const [canopyHeight, setCanopyHeight] = useState(10.0);
   const [dragCoefAth, setDragCoefAth] = useState(0.2);
 
-  // Use useEffect to send form data to the parent whenever the form values change
-  useEffect(() => {
+  // Function to handle sending the form data when the button is clicked
+  const handleSubmit = () => {
     const payload = {
       distribution: "mass",
       A1,
@@ -23,8 +23,8 @@ export default function MassmanDistributionForm({ onChange }) {
       dragCoefAth,
     };
 
-    onChange(payload); // Send form data to the parent whenever inputs change
-  }, [A1, A2, A3, zmax, leafAreaIndex, canopyHeight, dragCoefAth, onChange]);
+    onChange(payload); // Send the updated form data to the parent
+  };
 
   return (
     <div>

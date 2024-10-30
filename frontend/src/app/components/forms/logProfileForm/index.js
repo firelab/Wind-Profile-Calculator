@@ -1,34 +1,107 @@
-import React, { useState, useEffect } from 'react';
-import InputField from '../../inputField/index.js';
+import React, { useState } from 'react';
+import Graph from '../../graph/index';
+import './index.css';
 
-export default function LogProfileForm({ onChange }) {
+export default function LogProfileForm() {
   const [z0, setZ0] = useState('0.43');
   const [inputWindSpeed, setInputWindSpeed] = useState('4');
   const [inputReferenceHeight, setInputReferenceHeight] = useState('10');
   const [desiredOutputHeight, setDesiredOutputHeight] = useState('6.096');
+  const [graphData, setGraphData] = useState(null);
 
-  // useEffect to propagate form data to the parent when any input changes
-  useEffect(() => {
-    const formData = {
-      distribution: "log",
-      z0: parseFloat(z0),
-      inputWindSpeed: parseFloat(inputWindSpeed),
-      inputReferenceHeight: parseFloat(inputReferenceHeight),
-      desiredOutputHeight: parseFloat(desiredOutputHeight),
-    };
+  const formData = {
+    distribution: "log",
+    z0: parseFloat(z0),
+    inputWindSpeed: parseFloat(inputWindSpeed),
+    inputReferenceHeight: parseFloat(inputReferenceHeight),
+    desiredOutputHeight: parseFloat(desiredOutputHeight),
+  };
 
-    onChange(formData); // Automatically send updated form data to parent
-  }, [z0, inputWindSpeed, inputReferenceHeight, desiredOutputHeight, onChange]);
+  const handleGenerate = async (e) => {
+    e.preventDefault(); // Prevent the page from reloading
+
+    try {
+      const response = await fetch('http://localhost:5000/calculate_wind_profile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+  
+      const data = await response.json();
+      console.log('Response from server:', data);
+      
+      setGraphData(data);
+      // Handle any additional actions with the response data if needed
+    } catch (error) {
+      console.error('Failed to send form data:', error);
+    }
+  };
 
   return (
-    <div className="container">
-      <div className="form-section">
-        <h3>Log Profile Inputs</h3>
-        <InputField label="z0 [m]" placeholder="Enter value" value={z0} onChange={setZ0} />
-        <InputField label="Input Wind Speed [m/s]" placeholder="Enter value" value={inputWindSpeed} onChange={setInputWindSpeed} />
-        <InputField label="Input Reference Height [m]" placeholder="Enter value" value={inputReferenceHeight} onChange={setInputReferenceHeight} />
-        <InputField label="Desired Output Height [m]" placeholder="Enter value" value={desiredOutputHeight} onChange={setDesiredOutputHeight} />
+    <div className="form-graph-wrapper">
+      <div className="form-container">
+        <form className="form-section">
+          <h3>Log Profile Inputs</h3>
+          {/* Input fields here */}
+          <div>
+            <label htmlFor="z0">z0 [m]</label>
+            <input
+              id="z0"
+              type="number"
+              placeholder="Enter value"
+              value={z0}
+              onChange={(e) => setZ0(e.target.value)}
+              step="0.01"
+            />
+          </div>
+          <div>
+            <label htmlFor="inputWindSpeed">Input Wind Speed [m/s]</label>
+            <input
+              id="inputWindSpeed"
+              type="number"
+              placeholder="Enter value"
+              value={inputWindSpeed}
+              onChange={(e) => setInputWindSpeed(e.target.value)}
+              step="0.1"
+            />
+          </div>
+          <div>
+            <label htmlFor="inputReferenceHeight">Input Reference Height [m]</label>
+            <input
+              id="inputReferenceHeight"
+              type="number"
+              placeholder="Enter value"
+              value={inputReferenceHeight}
+              onChange={(e) => setInputReferenceHeight(e.target.value)}
+              step="0.1"
+            />
+          </div>
+          <div>
+            <label htmlFor="desiredOutputHeight">Desired Output Height [m]</label>
+            <input
+              id="desiredOutputHeight"
+              type="number"
+              placeholder="Enter value"
+              value={desiredOutputHeight}
+              onChange={(e) => setDesiredOutputHeight(e.target.value)}
+              step="0.01"
+            />
+          </div>
+          <button onClick={handleGenerate} type="button">Submit</button>
+        </form>
       </div>
+  
+      {graphData && (
+        <div className="graph-container">
+          <Graph data={graphData} />
+        </div>
+      )}
     </div>
   );
 }
