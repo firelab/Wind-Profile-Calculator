@@ -4,13 +4,16 @@ import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from '@m
 interface SelectMenuProps {
   options: { value: string; label: string }[]; // Array of option objects with value and label
   label: string; // Label for the select input
+  onChange: (value: string) => void; // Prop to handle value changes
 }
 
-const SelectMenu: React.FC<SelectMenuProps> = ({ options, label }) => {
+const SelectMenu: React.FC<SelectMenuProps> = ({ options, label, onChange }) => {
   const [selectedValue, setSelectedValue] = useState<string>(''); // State to hold the selected value
 
   const handleChange = (event: SelectChangeEvent) => {
-    setSelectedValue(event.target.value); // Update state with selected value
+    const newValue = event.target.value; // Get the new value from the event
+    setSelectedValue(newValue); // Update state with selected value
+    onChange(newValue); // Call the onChange prop with the new value
   };
 
   return (
@@ -33,3 +36,4 @@ const SelectMenu: React.FC<SelectMenuProps> = ({ options, label }) => {
 };
 
 export default SelectMenu;
+

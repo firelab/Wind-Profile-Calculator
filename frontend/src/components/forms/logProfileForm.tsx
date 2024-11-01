@@ -1,31 +1,37 @@
+import React, { useState } from 'react';
 import { Box, TextField, Button, Typography } from '@mui/material';
-import { useState } from 'react';
+import axios from 'axios';
 
-export default function LogProfileForm({ onSubmit }) {
+export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => void }) {
     const [formData, setFormData] = useState({
         z0: 0.43,
-        originalURef: 0.43,
-        originalZRef: 0.43,
-        desiredZRef: 0.43,
+        inputWindSpeed: 4,
+        inputReferenceHeight: 10,
+        desiredOutputHeight: 6.093,
+        distribution: 'log', 
     });
 
-    const handleChange = (event) => {
-        const { id, value } = event.target;
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { id, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
-            [id]: parseFloat(value), // Convert input to a float
+            [id]: parseFloat(value),
         }));
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault(); // Prevent default form submission
-        onSubmit(formData); // Call the parent handler
+    const handleSubmit = async () => {
+        try {
+            // Send data to the backend
+            const response = await axios.post('http://localhost:5000/calculate_wind_profile', formData);
+            // Call onSubmit prop to pass data to the parent component
+            onSubmit(response.data); // Ensure response.data matches your expected structure
+        } catch (error) {
+            console.error('Error submitting form:', error);
+        }
     };
 
     return (
         <Box
-            component="form"
-            onSubmit={handleSubmit}
             display="flex"
             flexDirection="column"
             gap={2}
@@ -51,32 +57,34 @@ export default function LogProfileForm({ onSubmit }) {
             />
             <TextField
                 required
-                id="originalURef"
-                label="original u ref"
+                id="inputWindSpeed"
+                label="Input Wind Speed"
                 type="number"
-                value={formData.originalURef}
+                value={formData.inputWindSpeed}
                 onChange={handleChange}
                 inputProps={{ min: 0 }}
             />
             <TextField
                 required
-                id="originalZRef"
-                label="original z ref"
+                id="inputReferenceHeight"
+                label="Input Reference Height"
                 type="number"
-                value={formData.originalZRef}
+                value={formData.inputReferenceHeight}
                 onChange={handleChange}
                 inputProps={{ min: 0 }}
             />
             <TextField
                 required
-                id="desiredZRef"
-                label="desired z ref"
+                id="desiredOutputHeight"
+                label="Desired Output Height"
                 type="number"
-                value={formData.desiredZRef}
+                value={formData.desiredOutputHeight}
                 onChange={handleChange}
                 inputProps={{ min: 0 }}
             />
-            <Button type="submit" variant="contained">Submit</Button>
+            <Button variant="contained" onClick={handleSubmit}>
+                Submit
+            </Button>
         </Box>
     );
 }
