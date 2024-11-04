@@ -28,16 +28,6 @@ def calculate():
         print("Processing Log distribution")
 
         # compute_log_profile(z0_val, original_u_ref, original_z_ref, desired_z_ref)
-        '''
-          useEffect(() => {
-    const formData = {
-      distribution: "log",
-      z0: parseFloat(z0),
-      inputWindSpeed: parseFloat(inputWindSpeed),
-      inputReferenceHeight: parseFloat(inputReferenceHeight),
-      desiredOutputHeight: parseFloat(desiredOutputHeight),
-    };
-        '''
         heights, windSpeeds, expectedOutput = calcLogProfile.compute_log_profile(float(data.get('z0')), float(data.get('inputWindSpeed')), float(data.get('inputReferenceHeight')), float(data.get('desiredOutputHeight')))
 
         responseData = {
@@ -48,25 +38,73 @@ def calculate():
     elif dist == 'unfi':
         # Handle 'unfi' distribution logic here
         print("Processing Uniform distribution")
-        print(f"Uniform distribution data: {data}")
+
+        canopyFlowSwig.normalDistribution(
+            float(data.get('heightMaxFoliageDist')),
+            float(data.get('standardDevFoliageDist')),
+            float(data.get('leafAreaIndex')),
+            float(data.get('canopyHeight')),
+            float(data.get('dragCoefAth')),
+            float(data.get('z0g')),
+            float(data.get('numNodes')),
+            float(data.get('inputSpeed')),
+            float(data.get('inputHeight')),  # Note this change
+            windSpeeds,                       # Separate argument
+            heights                            # Separate argument
+        )
+
     elif dist == 'asy':
         # Handle 'asy' distribution logic here
-        print("Processing Asymmetric distribution")
-        print(f"Asymmetric distribution data: {data}")
+        print("Processing Asymmetric distribution")        
+        
     elif dist == 'norm':
         # Handle 'norm' distribution logic here
         print("Processing Normal distribution")
-        print(f"Normal distribution data: {data}")
+        canopyFlowSwig.normalDistribution(
+            float(data.get('heightMaxFoliageDist')),
+            float(data.get('standardDevFoliageDist')),
+            float(data.get('leafAreaIndex')),
+            float(data.get('canopyHeight')),
+            float(data.get('dragCoefAth')),
+            float(data.get('z0g')),
+            float(data.get('numNodes')),
+            float(data.get('inputSpeed')),
+            float(data.get('inputHeight')),  # Note this change
+            windSpeeds,                       # Separate argument
+            heights                            # Separate argument
+        )
+
     elif dist == 'tri':
         # Handle 'tri' distribution logic here
         print("Processing Triangle distribution")
-        print(f"Triangle distribution data: {data}")
+        canopyFlowSwig.triangleDistribution(
+            float(data.get('A1')),
+            float(data.get('Ax')),
+            float(data.get('Ab')),
+            float(data.get('zmax')),
+            float(data.get('zbot')),
+            float(data.get('leafAreaIndex')),
+            float(data.get('canopyHeight')),
+            float(data.get('dragCoefAth')),
+            float(data.get('z0g')),
+            float(data.get('numNodes')),
+            float(data.get('inputSpeed')),
+            float(data.get('inputHeight')),  # Note this change
+            windSpeeds,                       # Separate argument
+            heights                            # Separate argument
+        )
+        
     elif dist == 'mass':
         # Handle 'mass' distribution logic here
         print("Processing Massman distribution")
         print(f"Massman distribution data: {data}")
     else:
         print(f"Unknown distribution: {dist}")
+
+    responseData = {
+        "heights": list(heights),
+        "windSpeeds": list(windSpeeds)
+    }
 
     return jsonify(responseData) 
 
