@@ -44,20 +44,23 @@ export default function App() {
 
   return (
     <Box sx={{ p: 2 }}>
-      <Typography variant="h6" component="h2" gutterBottom align="center" sx={{ mb: 3 }}>
+      <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3 }}>
         Canopy Flow Calculator
       </Typography>
       <Grid2 container spacing={2}>
-        <Grid2 size={{ xs: 12, sm: 4, md: 3 }} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <Grid2
+          size={{ xs: 12, sm: 4, md: 2, lg: 2, xl: 2 }}
+          sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
+        >
           {/* Canopy Type Select */}
           <SelectMenu 
             options={canOptions} 
             label="Select Canopy Type" 
             onChange={handleCanopyChange} 
           />
-
+  
           {/* Distribution Type Select */}
-          <FormControl sx={{ m: 1, minWidth: 120 }} disabled={canopyType !== '0'}>
+          <FormControl disabled={canopyType !== '0'}>
             <InputLabel id="distribution-select-label">Select Canopy Distribution</InputLabel>
             <Select
               labelId="distribution-select-label"
@@ -77,20 +80,23 @@ export default function App() {
             </Select>
             {canopyType !== '0' && <FormHelperText>Disabled</FormHelperText>}
           </FormControl>
-
+  
           {/* Render specific distribution forms based on selection */}
           {distributionType === 'uniform' && <UniformDistributionForm onSubmit={handleFormSubmit} />}
           {distributionType === 'asymmetricGaussian' && <AsymmetricGaussianForm onSubmit={handleFormSubmit} />}
           {distributionType === 'normal' && <NormalDistributionForm onSubmit={handleFormSubmit} />}
           {distributionType === 'triangle' && <TriangleDistributionForm onSubmit={handleFormSubmit} />}
           {distributionType === 'massman' && <MassmanDistributionForm onSubmit={handleFormSubmit} />}
-
+  
           {/* LogProfileForm shown only when no canopy is selected */}
           {canopyType === '1' && <LogProfileForm onSubmit={handleFormSubmit} />}
         </Grid2>
-
-        <Grid2 size={{ xs: 12, sm: 8, md: 9 }} sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Box sx={{ flexGrow: 1 }}>
+  
+        <Grid2
+          size={{ xs: 12, sm: 8, md: 8, lg: 10, xl: 10}}
+          sx={{ display: 'flex', flexDirection: 'column', height: '80vh', overflow: 'hidden' }}
+        >
+          <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
             <Chart heights={chartData.windSpeeds} windSpeeds={chartData.heights} />
           </Box>
         </Grid2>

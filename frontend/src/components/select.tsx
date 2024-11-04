@@ -17,7 +17,7 @@ const SelectMenu: React.FC<SelectMenuProps> = ({ options, label, onChange }) => 
   };
 
   return (
-    <FormControl fullWidth>
+    <FormControl>
       <InputLabel id="select-label">{label}</InputLabel>
       <Select
         labelId="select-label"

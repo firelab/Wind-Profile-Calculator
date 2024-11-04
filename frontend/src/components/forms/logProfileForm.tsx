@@ -21,10 +21,8 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
 
     const handleSubmit = async () => {
         try {
-            // Send data to the backend
             const response = await axios.post('http://localhost:5000/calculate_wind_profile', formData);
-            // Call onSubmit prop to pass data to the parent component
-            onSubmit(response.data); // Ensure response.data matches your expected structure
+            onSubmit(response.data);
         } catch (error) {
             console.error('Error submitting form:', error);
         }
@@ -35,7 +33,6 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
             display="flex"
             flexDirection="column"
             gap={2}
-            width="200px"
         >
             <Typography
                 variant="h6"
@@ -54,6 +51,7 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
                 value={formData.z0}
                 onChange={handleChange}
                 inputProps={{ min: 0 }}
+                fullWidth
             />
             <TextField
                 required
@@ -63,6 +61,7 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
                 value={formData.inputWindSpeed}
                 onChange={handleChange}
                 inputProps={{ min: 0 }}
+                fullWidth
             />
             <TextField
                 required
@@ -72,6 +71,7 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
                 value={formData.inputReferenceHeight}
                 onChange={handleChange}
                 inputProps={{ min: 0 }}
+                fullWidth
             />
             <TextField
                 required
@@ -81,6 +81,7 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
                 value={formData.desiredOutputHeight}
                 onChange={handleChange}
                 inputProps={{ min: 0 }}
+                fullWidth
             />
             <Button variant="contained" onClick={handleSubmit}>
                 Submit
