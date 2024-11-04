@@ -35,13 +35,12 @@ def calculate():
             "windSpeeds": list(windSpeeds)
         }
     
-    elif dist == 'unfi':
+    elif dist == 'uni':
         # Handle 'unfi' distribution logic here
         print("Processing Uniform distribution")
 
-        canopyFlowSwig.normalDistribution(
-            float(data.get('heightMaxFoliageDist')),
-            float(data.get('standardDevFoliageDist')),
+        canopyFlowSwig.uniformDistribution(
+            float(data.get('crownRatio')),
             float(data.get('leafAreaIndex')),
             float(data.get('canopyHeight')),
             float(data.get('dragCoefAth')),
@@ -56,6 +55,22 @@ def calculate():
     elif dist == 'asy':
         # Handle 'asy' distribution logic here
         print("Processing Asymmetric distribution")        
+
+        canopyFlowSwig.asymmetricGaussianDistribution(
+            float(data.get('heightMaxFoliageDist')),
+            float(data.get('standardDevFoliageUpper')),
+            float(data.get('standardDevFoliageLower')),
+            float(data.get('leafAreaIndex')),
+            float(data.get('canopyHeight')),
+            float(data.get('dragCoefAth')),
+            float(data.get('z0g')),
+            float(data.get('numNodes')),
+            float(data.get('inputSpeed')),
+            float(data.get('inputHeight')),  # Note this change
+            windSpeeds,                       # Separate argument
+            heights                            # Separate argument
+        )
+
         
     elif dist == 'norm':
         # Handle 'norm' distribution logic here
@@ -97,7 +112,22 @@ def calculate():
     elif dist == 'mass':
         # Handle 'mass' distribution logic here
         print("Processing Massman distribution")
-        print(f"Massman distribution data: {data}")
+        canopyFlowSwig.massmanDistribution(
+            float(data.get('A1')),
+            float(data.get('A2')),
+            float(data.get('A3')),
+            float(data.get('zmax')),
+            float(data.get('leafAreaIndex')),
+            float(data.get('canopyHeight')),
+            float(data.get('dragCoefAth')),
+            float(data.get('z0g')),
+            float(data.get('numNodes')),
+            float(data.get('inputSpeed')),
+            float(data.get('inputHeight')),  # Note this change
+            windSpeeds,                       # Separate argument
+            heights                            # Separate argument
+        )    
+
     else:
         print(f"Unknown distribution: {dist}")
 
