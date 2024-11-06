@@ -43,7 +43,7 @@ export default function TriangleDistributionForm({ onSubmit }: { onSubmit: (data
 
     return (
         <Box display="flex" flexDirection="column" gap={2}>
-            <Typography variant="h6">Triangle Distribution</Typography>
+            <Typography variant="h6">Form</Typography>
             <TextField required id="A1" label="A1" type="number" value={formData.A1} onChange={handleChange} />
             <TextField required id="Ax" label="Ax" type="number" value={formData.Ax} onChange={handleChange} />
             <TextField required id="Ab" label="Ab" type="number" value={formData.Ab} onChange={handleChange} />

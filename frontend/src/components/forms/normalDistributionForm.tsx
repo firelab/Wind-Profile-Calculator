@@ -40,7 +40,7 @@ export default function NormalDistributionForm({ onSubmit }: { onSubmit: (data: 
 
     return (
         <Box display="flex" flexDirection="column" gap={2}>
-            <Typography variant="h6">Normal Distribution</Typography>
+            <Typography variant="h6">Form</Typography>
             <TextField required id="heightMaxFoliageDist" label="heightMaxFoliageDist" type="number" value={formData.heightMaxFoliageDist} onChange={handleChange} />
             <TextField required id="standardDevFoliageDist" label="standardDevFoliageDist" type="number" value={formData.standardDevFoliageDist} onChange={handleChange} />
             <TextField required id="leafAreaIndex" label="leafAreaIndex" type="number" value={formData.leafAreaIndex} onChange={handleChange} />

@@ -39,7 +39,7 @@ export default function UniformDistributionForm({ onSubmit }: { onSubmit: (data:
 
     return (
         <Box display="flex" flexDirection="column" gap={2}>
-            <Typography variant="h6">Uniform Distribution</Typography>
+            <Typography variant="h6">Form</Typography>
             <TextField required id="crownRatio" label="crownRatio" type="number" value={formData.crownRatio} onChange={handleChange} />
             <TextField required id="leafAreaIndex" label="leafAreaIndex" type="number" value={formData.leafAreaIndex} onChange={handleChange} />
             <TextField required id="canopyHeight" label="canopyHeight [m]" type="number" value={formData.canopyHeight} onChange={handleChange} />

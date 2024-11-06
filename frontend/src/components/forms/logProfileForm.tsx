@@ -41,7 +41,7 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
                 alignSelf="flex-start"
                 sx={{ marginBottom: -1 }}
             >
-                Log Profile Form
+                Form
             </Typography>
             <TextField
                 required

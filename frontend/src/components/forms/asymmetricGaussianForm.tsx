@@ -41,7 +41,7 @@ export default function AsymmetricGaussianForm({ onSubmit }: { onSubmit: (data: 
 
     return (
         <Box display="flex" flexDirection="column" gap={2}>
-            <Typography variant="h6">Asymmetric Gaussian Distribution</Typography>
+            <Typography variant="h6">Form</Typography>
             <TextField required id="heightMaxFoliageDist" label="Max Foliage Height" type="number" 
                 value={formData.heightMaxFoliageDist} onChange={handleChange} />
             <TextField required id="standardDevFoliageUpper" label="Upper Std Dev" type="number" 

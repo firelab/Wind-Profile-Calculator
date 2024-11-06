@@ -42,7 +42,7 @@ export default function MassmanDistributionForm({ onSubmit }: { onSubmit: (data:
 
     return (
         <Box display="flex" flexDirection="column" gap={2}>
-            <Typography variant="h6">Massman Distribution</Typography>
+            <Typography variant="h6">Form</Typography>
             <TextField 
                 required 
                 id="A1" 

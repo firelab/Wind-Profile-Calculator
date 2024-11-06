@@ -31,11 +31,11 @@ export default function App() {
   };
 
   const distOptions = [
-    { value: 'uniform', label: 'Uniform' },
-    { value: 'asymmetricGaussian', label: 'Asymmetric Gaussian' },
-    { value: 'normal', label: 'Normal' },
-    { value: 'triangle', label: 'Triangle' },
-    { value: 'massman', label: 'Massman' },
+    { value: '0', label: 'Uniform' },
+    { value: '1', label: 'Asymmetric Gaussian' },
+    { value: '2', label: 'Normal' },
+    { value: '3', label: 'Triangle' },
+    { value: '4', label: 'Massman' },
   ];
 
   const canOptions = [
@@ -45,19 +45,19 @@ export default function App() {
 
   return (
     <Box sx={{ p: 2 }}>
-    <Grid2 container alignItems="center" sx={{ mb: 3 }}>
-      <Grid2>
-        <Typography variant="h3" component="h2" gutterBottom align="left" sx={{ mb: -1}}>
-          Wind Profile Calculator | 
-        </Typography>
+      <Grid2 container alignItems="center" sx={{ mb: 3 }}>
+        <Grid2>
+          <Typography variant="h3" component="h2" gutterBottom align="left" sx={{ mb: -1}}>
+            Wind Profile Calculator | 
+          </Typography>
+        </Grid2>
+        <Grid2>
+          <GitButton />
+        </Grid2>
       </Grid2>
-      <Grid2>
-        <GitButton />
-      </Grid2>
-    </Grid2>
       <Grid2 container spacing={2}>
         <Grid2
-          size={{ xs: 12, sm: 4, md: 2, lg: 2, xl: 2,}}
+          size={{ xs: 12, sm: 4, md: 2, lg: 2, xl: 2 }}
           sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
         >
           <SelectMenu 
@@ -87,26 +87,25 @@ export default function App() {
             {canopyType !== '0' && <FormHelperText>Disabled</FormHelperText>}
           </FormControl>
   
-          {/* Render specific distribution forms based on selection */}
-          {distributionType === 'uniform' && <UniformDistributionForm onSubmit={handleFormSubmit} />}
-          {distributionType === 'asymmetricGaussian' && <AsymmetricGaussianForm onSubmit={handleFormSubmit} />}
-          {distributionType === 'normal' && <NormalDistributionForm onSubmit={handleFormSubmit} />}
-          {distributionType === 'triangle' && <TriangleDistributionForm onSubmit={handleFormSubmit} />}
-          {distributionType === 'massman' && <MassmanDistributionForm onSubmit={handleFormSubmit} />}
+          {distributionType === '0' && <UniformDistributionForm onSubmit={handleFormSubmit} />}
+          {distributionType === '1' && <AsymmetricGaussianForm onSubmit={handleFormSubmit} />}
+          {distributionType === '2' && <NormalDistributionForm onSubmit={handleFormSubmit} />}
+          {distributionType === '3' && <TriangleDistributionForm onSubmit={handleFormSubmit} />}
+          {distributionType === '4' && <MassmanDistributionForm onSubmit={handleFormSubmit} />}
   
-          {/* LogProfileForm shown only when no canopy is selected */}
           {canopyType === '1' && <LogProfileForm onSubmit={handleFormSubmit} />}
         </Grid2>
   
         <Grid2
-        size={{ xs: 12, sm: 8, md: 8, lg: 10, xl: 10 }}
-        sx={{ display: 'flex', flexDirection: 'column', height: '80vh', overflow: 'hidden' }}
-      >
-        <Box sx={{ flexGrow: 1, overflowY: 'auto', p: 0, m: 0 }}>
-          <Chart heights={chartData.heights} windSpeeds={chartData.windSpeeds} />
-        </Box>
+          size={{ xs: 12, sm: 8, md: 8, lg: 10, xl: 10 }}
+          sx={{ display: 'flex', flexDirection: 'column', height: '80vh', overflow: 'hidden' }}
+        >
+          <Box sx={{ flexGrow: 1, overflow: 'visible'}}>
+            <Chart heights={chartData.heights} windSpeeds={chartData.windSpeeds} />
+          </Box>
         </Grid2>
       </Grid2>
     </Box>
   );
+  
 }
