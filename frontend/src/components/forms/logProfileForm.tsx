@@ -46,7 +46,7 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
             <TextField
                 required
                 id="z0"
-                label="z0"
+                label="z0 [m]"
                 type="number"
                 value={formData.z0}
                 onChange={handleChange}
@@ -56,7 +56,7 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
             <TextField
                 required
                 id="inputWindSpeed"
-                label="Input Wind Speed"
+                label="Input Wind Speed [m/s]"
                 type="number"
                 value={formData.inputWindSpeed}
                 onChange={handleChange}
@@ -66,7 +66,7 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
             <TextField
                 required
                 id="inputReferenceHeight"
-                label="Input Reference Height"
+                label="Input Reference Height [m]"
                 type="number"
                 value={formData.inputReferenceHeight}
                 onChange={handleChange}
@@ -76,7 +76,7 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
             <TextField
                 required
                 id="desiredOutputHeight"
-                label="Desired Output Height"
+                label="Desired Output Height [m]"
                 type="number"
                 value={formData.desiredOutputHeight}
                 onChange={handleChange}

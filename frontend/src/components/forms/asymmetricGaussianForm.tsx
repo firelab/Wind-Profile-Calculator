@@ -50,15 +50,15 @@ export default function AsymmetricGaussianForm({ onSubmit }: { onSubmit: (data: 
                 value={formData.standardDevFoliageLower} onChange={handleChange} />
             <TextField required id="leafAreaIndex" label="Leaf Area Index" type="number" 
                 value={formData.leafAreaIndex} onChange={handleChange} />
-            <TextField required id="canopyHeight" label="Canopy Height" type="number" 
+            <TextField required id="canopyHeight [m]" label="Canopy Height" type="number" 
                 value={formData.canopyHeight} onChange={handleChange} />
             <TextField required id="dragCoefAth" label="Drag Coefficient" type="number" 
                 value={formData.dragCoefAth} onChange={handleChange} />
-            <TextField required id="z0g" label="Ground Roughness Length (z0g)" type="number" 
+            <TextField required id="z0g [m]" label="Ground Roughness Length (z0g)" type="number" 
                 value={formData.z0g} onChange={handleChange} />
             <TextField required id="numNodes" label="Number of Nodes" type="number" 
                 value={formData.numNodes} onChange={handleChange} />
-            <TextField required id="inputSpeed" label="Input Wind Speed" type="number" 
+            <TextField required id="inputSpeed [m/s]" label="Input Wind Speed" type="number" 
                 value={formData.inputSpeed} onChange={handleChange} />
             <Button variant="contained" onClick={handleSubmit}>Submit</Button>
         </Box>

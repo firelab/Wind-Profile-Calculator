@@ -8,6 +8,7 @@ import TriangleDistributionForm from './components/forms/triangleDistributionFor
 import MassmanDistributionForm from './components/forms/massmanDistributionForm';
 import Chart from './components/chart';
 import SelectMenu from './components/select';
+import GitButton from './components/button';
 import { Box, Grid2, Typography, FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@mui/material';
 import { useState } from 'react';
 
@@ -38,28 +39,33 @@ export default function App() {
   ];
 
   const canOptions = [
-    { value: '0', label: 'Has Canopy' },
-    { value: '1', label: 'Has No Canopy' },
+    { value: '0', label: 'Canopy' },
+    { value: '1', label: 'No Canopy' },
   ];
 
   return (
     <Box sx={{ p: 2 }}>
-      <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 3 }}>
-        Canopy Flow Calculator
-      </Typography>
+    <Grid2 container alignItems="center" sx={{ mb: 3 }}>
+      <Grid2>
+        <Typography variant="h3" component="h2" gutterBottom align="left" sx={{ mb: -1}}>
+          Wind Profile Calculator | 
+        </Typography>
+      </Grid2>
+      <Grid2>
+        <GitButton />
+      </Grid2>
+    </Grid2>
       <Grid2 container spacing={2}>
         <Grid2
-          size={{ xs: 12, sm: 4, md: 2, lg: 2, xl: 2 }}
+          size={{ xs: 12, sm: 4, md: 2, lg: 2, xl: 2,}}
           sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
         >
-          {/* Canopy Type Select */}
           <SelectMenu 
             options={canOptions} 
             label="Select Canopy Type" 
             onChange={handleCanopyChange} 
           />
   
-          {/* Distribution Type Select */}
           <FormControl disabled={canopyType !== '0'}>
             <InputLabel id="distribution-select-label">Select Canopy Distribution</InputLabel>
             <Select
@@ -93,12 +99,12 @@ export default function App() {
         </Grid2>
   
         <Grid2
-          size={{ xs: 12, sm: 8, md: 8, lg: 10, xl: 10}}
-          sx={{ display: 'flex', flexDirection: 'column', height: '80vh', overflow: 'hidden' }}
-        >
-          <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
-            <Chart heights={chartData.windSpeeds} windSpeeds={chartData.heights} />
-          </Box>
+        size={{ xs: 12, sm: 8, md: 8, lg: 10, xl: 10 }}
+        sx={{ display: 'flex', flexDirection: 'column', height: '80vh', overflow: 'hidden' }}
+      >
+        <Box sx={{ flexGrow: 1, overflowY: 'auto', p: 0, m: 0 }}>
+          <Chart heights={chartData.heights} windSpeeds={chartData.windSpeeds} />
+        </Box>
         </Grid2>
       </Grid2>
     </Box>

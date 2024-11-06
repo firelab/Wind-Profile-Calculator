@@ -70,7 +70,7 @@ export default function MassmanDistributionForm({ onSubmit }: { onSubmit: (data:
             <TextField 
                 required 
                 id="zmax" 
-                label="Max Height" 
+                label="zmax" 
                 type="number" 
                 value={formData.zmax} 
                 onChange={handleChange} 
@@ -78,7 +78,7 @@ export default function MassmanDistributionForm({ onSubmit }: { onSubmit: (data:
             <TextField 
                 required 
                 id="leafAreaIndex" 
-                label="Leaf Area Index" 
+                label="leafAreaIndex" 
                 type="number" 
                 value={formData.leafAreaIndex} 
                 onChange={handleChange} 
@@ -86,7 +86,7 @@ export default function MassmanDistributionForm({ onSubmit }: { onSubmit: (data:
             <TextField 
                 required 
                 id="canopyHeight" 
-                label="Canopy Height" 
+                label="canopyHeight" 
                 type="number" 
                 value={formData.canopyHeight} 
                 onChange={handleChange} 
@@ -94,15 +94,15 @@ export default function MassmanDistributionForm({ onSubmit }: { onSubmit: (data:
             <TextField 
                 required 
                 id="dragCoefAth" 
-                label="Drag Coefficient" 
+                label="dragCoefAth" 
                 type="number" 
                 value={formData.dragCoefAth} 
                 onChange={handleChange} 
             />
             <TextField 
                 required 
-                id="z0g" 
-                label="Ground Roughness Length (z0g)" 
+                id="z0g [m]" 
+                label="z0g" 
                 type="number" 
                 value={formData.z0g} 
                 onChange={handleChange} 
@@ -110,15 +110,15 @@ export default function MassmanDistributionForm({ onSubmit }: { onSubmit: (data:
             <TextField 
                 required 
                 id="numNodes" 
-                label="Number of Nodes" 
+                label="numNodes" 
                 type="number" 
                 value={formData.numNodes} 
                 onChange={handleChange} 
             />
             <TextField 
                 required 
-                id="inputSpeed" 
-                label="Input Wind Speed" 
+                id="inputSpeed [m/s]" 
+                label="inputSpeed" 
                 type="number" 
                 value={formData.inputSpeed} 
                 onChange={handleChange} 

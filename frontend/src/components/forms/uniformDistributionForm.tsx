@@ -40,13 +40,13 @@ export default function UniformDistributionForm({ onSubmit }: { onSubmit: (data:
     return (
         <Box display="flex" flexDirection="column" gap={2}>
             <Typography variant="h6">Uniform Distribution</Typography>
-            <TextField required id="crownRatio" label="Crown Ratio" type="number" value={formData.crownRatio} onChange={handleChange} />
-            <TextField required id="leafAreaIndex" label="Leaf Area Index" type="number" value={formData.leafAreaIndex} onChange={handleChange} />
-            <TextField required id="canopyHeight" label="Canopy Height" type="number" value={formData.canopyHeight} onChange={handleChange} />
-            <TextField required id="dragCoefAth" label="Drag Coefficient" type="number" value={formData.dragCoefAth} onChange={handleChange} />
-            <TextField required id="z0g" label="Ground Roughness Length (z0g)" type="number" value={formData.z0g} onChange={handleChange} />
-            <TextField required id="numNodes" label="Number of Nodes" type="number" value={formData.numNodes} onChange={handleChange} />
-            <TextField required id="inputSpeed" label="Input Wind Speed" type="number" value={formData.inputSpeed} onChange={handleChange} />
+            <TextField required id="crownRatio" label="crownRatio" type="number" value={formData.crownRatio} onChange={handleChange} />
+            <TextField required id="leafAreaIndex" label="leafAreaIndex" type="number" value={formData.leafAreaIndex} onChange={handleChange} />
+            <TextField required id="canopyHeight" label="canopyHeight [m]" type="number" value={formData.canopyHeight} onChange={handleChange} />
+            <TextField required id="dragCoefAth" label="dragCoefAth" type="number" value={formData.dragCoefAth} onChange={handleChange} />
+            <TextField required id="z0g" label="z0g [m]" type="number" value={formData.z0g} onChange={handleChange} />
+            <TextField required id="numNodes" label="numNodes" type="number" value={formData.numNodes} onChange={handleChange} />
+            <TextField required id="inputSpeed" label="inputSpeed [m/s]" type="number" value={formData.inputSpeed} onChange={handleChange} />
             <Button variant="contained" onClick={handleSubmit}>Submit</Button>
         </Box>
     );
