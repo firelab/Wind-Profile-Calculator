@@ -26,8 +26,6 @@ export default function Chart({ heights, windSpeeds }: ChartProps) {
 
     return (
         <LineChart
-            className="custom-y-padding-bottom"
-            sx={{overflow: "visible"}}
             xAxis={[{
                 data: windSpeeds.length > 0 ? windSpeeds : [], // Only show data if it exists
                 label: 'Wind Speed [m/s]', // Label for the x-axis
