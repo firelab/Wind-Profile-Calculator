@@ -1,7 +1,10 @@
 name: Deploy Frontend to Server
 
 on:
-  workflow_dispatch: # Allows manual triggering of the workflow
+  push:
+    branches:
+      - master 
+  workflow_dispatch: 
 
 jobs:
   deploy-frontend:
@@ -13,7 +16,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18' # Adjust Node.js version as needed
+        node-version: '18' 
         
     - name: Install dependencies and build frontend
       run: |
@@ -30,6 +33,6 @@ jobs:
       run: |
         # Transfer build folder directly to the server
         scp -o StrictHostKeyChecking=no -r ./frontend/build/* mason@ninjastorm.firelab.org:/var/www/html/windprofilecalculator
-
         scp -o StrictHostKeyChecking=no -r ./backend* mason@ninjastorm.firelab.org:/home/mason/WPCBackend
+
 
