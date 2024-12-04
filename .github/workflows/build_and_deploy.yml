@@ -1,17 +1,38 @@
-name: Test SSH Connection and Create File
+name: Deploy Frontend to Server
+
 on:
   workflow_dispatch: # Allows manual triggering of the workflow
+
 jobs:
-  test:
+  deploy-frontend:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18' # Adjust Node.js version as needed
+
+    - name: Install dependencies
+      run: |
+        npm install
+
+    - name: Build project
+      run: |
+        npm run build
+
     - name: Set up SSH
       uses: webfactory/ssh-agent@v0.7.0
       with:
         ssh-private-key: ${{ secrets.DEPLOY_KEY }}
-    - name: Test SSH Connection and Create File
+
+    - name: Deploy frontend to server
       run: |
-        ssh -o StrictHostKeyChecking=no mason@ninjastorm.firelab.org 'echo "SSH test successful" > ~/github_action_test.txt'
-      # Replace `user` and `your-server-ip` with your actual SSH username and server IP
+        # Transfer build folder directly to the server
+        scp -o StrictHostKeyChecking=no -r ./build/* mason@ninjastorm.firelab.org:/var/www/html/
+
+        # Optional: Provide feedback
+        echo "Frontend deployed successfully to /var/www/html"
+
