@@ -29,7 +29,7 @@ jobs:
     - name: Deploy frontend to server
       run: |
         # Transfer build folder directly to the server
-        scp -o StrictHostKeyChecking=no -r ./build/* mason@ninjastorm.firelab.org:/var/www/html/
+        scp -o StrictHostKeyChecking=no -r ./frontend/build/* mason@ninjastorm.firelab.org:/var/www/html/windprofilecalculator
 
         # Optional: Provide feedback
         echo "Frontend deployed successfully to /var/www/html"
