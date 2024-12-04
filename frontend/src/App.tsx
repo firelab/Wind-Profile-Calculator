@@ -98,9 +98,9 @@ export default function App() {
   
         <Grid2
           size={{ xs: 12, sm: 8, md: 8, lg: 10, xl: 10 }}
-          sx={{ display: 'flex', flexDirection: 'column', height: '80vh', overflow: 'hidden' }}
+          sx={{ display: 'flex', flexDirection: 'column', height: '80vh', overflow: 'visible' }}
         >
-          <Box sx={{ flexGrow: 1, overflow: 'visible'}}>
+          <Box sx={{ flexGrow: 1, minHeight: 0, overflow: 'visible'}}>
             <Chart heights={chartData.heights} windSpeeds={chartData.windSpeeds} />
           </Box>
         </Grid2>

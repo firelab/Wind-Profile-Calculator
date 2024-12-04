@@ -27,7 +27,7 @@ export default function UniformDistributionForm({ onSubmit }: { onSubmit: (data:
         const inputHeight = formData.canopyHeight + 6.096;
 
         try {
-            const response = await axios.post('http://localhost:5000/calculate_wind_profile', {
+            const response = await axios.post("https://ninjastorm.firelab.org/windprofilecalculator/api", {
                 ...formData,
                 inputHeight, // Add calculated inputHeight to the request payload
             });
