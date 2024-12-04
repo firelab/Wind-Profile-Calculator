@@ -14,16 +14,13 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18' # Adjust Node.js version as needed
-
-    - name: Install dependencies
+        
+    - name: Install dependencies and build frontend
       run: |
         cd frontend
         npm install
-
-    - name: Build project
-      run: |
         npm run build
-
+        
     - name: Set up SSH
       uses: webfactory/ssh-agent@v0.7.0
       with:
