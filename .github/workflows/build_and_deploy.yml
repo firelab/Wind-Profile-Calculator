@@ -31,6 +31,5 @@ jobs:
         # Transfer build folder directly to the server
         scp -o StrictHostKeyChecking=no -r ./frontend/build/* mason@ninjastorm.firelab.org:/var/www/html/windprofilecalculator
 
-        # Optional: Provide feedback
-        echo "Frontend deployed successfully to /var/www/html"
+        scp -o StrictHostKeyChecking=no -r ./backend* mason@ninjastorm.firelab.org:/home/mason/WPCBackend
 
