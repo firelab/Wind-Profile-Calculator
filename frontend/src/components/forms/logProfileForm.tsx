@@ -21,7 +21,7 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/calculate_wind_profile', formData);
+            const response = await axios.post("https://ninjastorm.firelab.org/windprofilecalculator/api", formData);
             onSubmit(response.data);
         } catch (error) {
             console.error('Error submitting form:', error);
