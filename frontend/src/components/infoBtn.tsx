@@ -28,7 +28,7 @@ const InfoButton: React.FC = () => {
         <DialogTitle id="info-dialog-title">What is a Wind Profile Calculator?</DialogTitle>
         <DialogContent>
             <p>
-                Sample test explaining what a wind profile is, what the distributions mean, etc.
+                Sample text explaining what a wind profile is, what the distributions mean, etc.
             </p>
             <p>
                 Learn more by reading our research paper:&nbsp;
