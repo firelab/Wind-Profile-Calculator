@@ -21,7 +21,8 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post("https://ninjastorm.firelab.org/windprofilecalculator/api", formData);
+            const response = await axios.post("http://localhost:5000//windprofilecalculator/api/calculate", formData)
+            //const response = await axios.post("https://ninjastorm.firelab.org/windprofilecalculator/api/calculate", formData);
             onSubmit(response.data);
         } catch (error) {
             console.error('Error submitting form:', error);
@@ -45,16 +46,6 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
             </Typography>
             <TextField
                 required
-                id="z0"
-                label="z0 [m]"
-                type="number"
-                value={formData.z0}
-                onChange={handleChange}
-                inputProps={{ min: 0 }}
-                fullWidth
-            />
-            <TextField
-                required
                 id="inputWindSpeed"
                 label="Input Wind Speed [m/s]"
                 type="number"
@@ -69,6 +60,16 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
                 label="Input Reference Height [m]"
                 type="number"
                 value={formData.inputReferenceHeight}
+                onChange={handleChange}
+                inputProps={{ min: 0 }}
+                fullWidth
+            />
+            <TextField
+                required
+                id="z0"
+                label="z0 [m]"
+                type="number"
+                value={formData.z0}
                 onChange={handleChange}
                 inputProps={{ min: 0 }}
                 fullWidth

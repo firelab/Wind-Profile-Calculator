@@ -14,7 +14,7 @@ import calcLogProfile
 app = Flask(__name__)
 CORS(app)  
 
-@app.route('/windprofilecalculator/api', methods=['POST'])
+@app.route('/windprofilecalculator/api/calculate', methods=['POST'])
 def calculate():
     data = request.json  # Get the JSON data from the request
     dist = data.get('distribution')  # Extract the distribution type
