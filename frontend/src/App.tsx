@@ -8,7 +8,8 @@ import TriangleDistributionForm from './components/forms/triangleDistributionFor
 import MassmanDistributionForm from './components/forms/massmanDistributionForm';
 import Chart from './components/chart';
 import SelectMenu from './components/select';
-import GitButton from './components/button';
+import GitHubButton from './components/gitHubBtn';
+import InfoButton from './components/infoBtn';
 import { Box, Grid2, Typography, FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@mui/material';
 import { useState } from 'react';
 
@@ -47,15 +48,16 @@ export default function App() {
     <Box sx={{ p: 2 }}>
       <Grid2 container alignItems="center" sx={{ mb: 3 }}>
         <Grid2>
-          <Typography variant="h3" component="h2" gutterBottom align="left" sx={{ mb: -1}}>
+          <Typography variant="h3" component="h2" gutterBottom align="left" sx={{ mb: 0}}>
             Wind Profile Calculator | 
           </Typography>
         </Grid2>
         <Grid2>
-          <GitButton />
+          <GitHubButton />
+          <InfoButton />
         </Grid2>
       </Grid2>
-      <Grid2 container spacing={2}>
+      <Grid2 container spacing={6}>
         <Grid2
           size={{ xs: 12, sm: 4, md: 2, lg: 2, xl: 2 }}
           sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
