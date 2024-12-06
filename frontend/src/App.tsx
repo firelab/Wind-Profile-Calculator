@@ -14,7 +14,7 @@ import { Box, Grid2, Typography, FormControl, InputLabel, Select, MenuItem, Form
 import { useState } from 'react';
 
 export default function App() {
-  const [chartData, setChartData] = useState({ heights: [], windSpeeds: [] });
+  const [chartData, setChartData] = useState({ heights: [], windSpeeds: [], inputHeightIndex: 0, desiredOutputHeightIndex: 0});
   const [distributionType, setDistributionType] = useState<string>('');
   const [canopyType, setCanopyType] = useState<string>('');
 
@@ -59,35 +59,37 @@ export default function App() {
       </Grid2>
       <Grid2 container spacing={6}>
         <Grid2
-          size={{ xs: 12, sm: 4, md: 2, lg: 2, xl: 2 }}
-          sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
+          size={{ xs: 12, sm: 4, md: 2, lg: 2, xl: 2}}
+          sx={{ display: 'flex', flexDirection: 'column', gap: 2}}
         >
+          <Box 
+          display="flex" 
+          flexDirection="column" 
+          gap={3}
+        >
+          <Typography
+            variant="h6"
+            component="h2"
+            gutterBottom
+            alignSelf="flex-start"
+            sx={{ marginBottom: -1 }}
+          >
+            Canopy Settings
+          </Typography>
+
           <SelectMenu 
             options={canOptions} 
-            label="Select Canopy Type" 
+            label="Select Type" 
             onChange={handleCanopyChange} 
+            disabled= {false}
           />
-  
-          <FormControl disabled={canopyType !== '0'}>
-            <InputLabel id="distribution-select-label">Select Canopy Distribution</InputLabel>
-            <Select
-              labelId="distribution-select-label"
-              id="distribution-select"
-              value={distributionType}
-              label="Select Canopy Distribution"
-              onChange={(event) => handleDistributionChange(event.target.value)}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              {distOptions.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </Select>
-            {canopyType !== '0' && <FormHelperText>Disabled</FormHelperText>}
-          </FormControl>
+          <SelectMenu 
+            options={distOptions} 
+            label="Select Canopy Distribution" 
+            onChange={handleDistributionChange}
+            disabled={canopyType !== '0'} 
+          />
+          </Box>
   
           {distributionType === '0' && <UniformDistributionForm onSubmit={handleFormSubmit} />}
           {distributionType === '1' && <AsymmetricGaussianForm onSubmit={handleFormSubmit} />}
@@ -99,11 +101,11 @@ export default function App() {
         </Grid2>
   
         <Grid2
-          size={{ xs: 12, sm: 8, md: 8, lg: 10, xl: 10 }}
+          size="auto"
           sx={{ display: 'flex', flexDirection: 'column', height: '80vh', overflow: 'visible' }}
         >
           <Box sx={{ flexGrow: 1, minHeight: 0, overflow: 'visible'}}>
-            <Chart heights={chartData.heights} windSpeeds={chartData.windSpeeds} />
+            <Chart heights={chartData.heights} windSpeeds={chartData.windSpeeds} inputHeightIndex={chartData.inputHeightIndex} desiredOutputHeightIndex={chartData.desiredOutputHeightIndex} />
           </Box>
         </Grid2>
       </Grid2>

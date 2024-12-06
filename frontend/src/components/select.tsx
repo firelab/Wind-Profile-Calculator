@@ -5,9 +5,10 @@ interface SelectMenuProps {
   options: { value: string; label: string }[]; // Array of option objects with value and label
   label: string; // Label for the select input
   onChange: (value: string) => void; // Prop to handle value changes
+  disabled: boolean;
 }
 
-const SelectMenu: React.FC<SelectMenuProps> = ({ options, label, onChange }) => {
+const SelectMenu: React.FC<SelectMenuProps> = ({ options, label, onChange, disabled }) => {
   const [selectedValue, setSelectedValue] = useState<string>(''); // State to hold the selected value
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -17,13 +18,14 @@ const SelectMenu: React.FC<SelectMenuProps> = ({ options, label, onChange }) => 
   };
 
   return (
-    <FormControl>
+    <FormControl disabled={disabled}>
       <InputLabel id="select-label">{label}</InputLabel>
       <Select
         labelId="select-label"
         value={selectedValue}
         label={label}
         onChange={handleChange} // Attach onChange handler
+        disabled={disabled}
       >
         {options.map((option) => (
           <MenuItem key={option.value} value={option.value}>

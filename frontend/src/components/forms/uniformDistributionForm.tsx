@@ -13,6 +13,7 @@ export default function UniformDistributionForm({ onSubmit }: { onSubmit: (data:
         numNodes: 1000,
         inputSpeed: 10.0,
         inputHeight: 6.096,
+        desiredOutputHeight: 10,
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +38,7 @@ export default function UniformDistributionForm({ onSubmit }: { onSubmit: (data:
         <Box
         display="flex"
         flexDirection="column"
-        gap={2}
+        gap={3}
         >
         <Typography
             variant="h6"
@@ -46,7 +47,7 @@ export default function UniformDistributionForm({ onSubmit }: { onSubmit: (data:
             alignSelf="flex-start"
             sx={{ marginBottom: -1 }}
         >
-            Form
+            Wind Profile Inputs
         </Typography>
             <TextField
                 required
@@ -63,6 +64,15 @@ export default function UniformDistributionForm({ onSubmit }: { onSubmit: (data:
                 label="Input Wind Height"
                 type="number"
                 value={formData.inputHeight}
+                onChange={handleChange}
+                fullWidth
+            />
+            <TextField
+                required
+                id="desiredOutputHeight"
+                label="Desired Output Height"
+                type="number"
+                value={formData.desiredOutputHeight}
                 onChange={handleChange}
                 fullWidth
             />

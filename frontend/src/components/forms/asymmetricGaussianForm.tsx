@@ -15,6 +15,7 @@ export default function AsymmetricGaussianForm({ onSubmit }: { onSubmit: (data: 
         numNodes: 1000,
         inputSpeed: 10.0,
         inputHeight: 6.096,
+        desiredOutputHeight: 10,
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,7 +37,11 @@ export default function AsymmetricGaussianForm({ onSubmit }: { onSubmit: (data: 
     };
 
     return (
-        <Box display="flex" flexDirection="column" gap={2}>
+        <Box 
+          display="flex" 
+          flexDirection="column" 
+          gap={3}
+        >
           <Typography
             variant="h6"
             component="h2"
@@ -44,7 +49,7 @@ export default function AsymmetricGaussianForm({ onSubmit }: { onSubmit: (data: 
             alignSelf="flex-start"
             sx={{ marginBottom: -1 }}
           >
-            Form
+            Wind Profile Inputs
           </Typography>
     
           <Tooltip title="Enter the wind speed in meters per second" arrow>
@@ -66,6 +71,18 @@ export default function AsymmetricGaussianForm({ onSubmit }: { onSubmit: (data: 
               label="Input Wind Height"
               type="number"
               value={formData.inputHeight}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Tooltip>
+
+          <Tooltip title="Enter the height at which the wind speed is measured, in meters" arrow>
+            <TextField
+              required
+              id="desiredOutputHeight"
+              label="Desired Output Height"
+              type="number"
+              value={formData.desiredOutputHeight}
               onChange={handleChange}
               fullWidth
             />
