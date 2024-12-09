@@ -1,42 +1,71 @@
 # Wind Profile Calculator
-The lab has developed programs that can calculate the wind profiles based on different canopy distributions. This web application allows users to interact with these models and see different Wind Profile graphs. 
+
+The Firelab has developed a model that can calculatate the wind profile based on different canopy distributions. This web application allows users to interact with the model and displays a visual representation of the wind profile and canopy. It can be found [here](https://ninjastorm.firelab.org).
+
 ## Table of Contents
 
-1. [Technoloies Used](#technologies-used)
+1. [Technologies Used](#technologies-used)
 2. [Frontend Overview](#frontend-overview)
 3. [Backend Overview](#backend-overview)
-4. [Hosting Information](#hosting-information)
+4. [Deployment](#deployment)
+
+## Technologies Used
+
+1. **Frontend**
+   - Dependencies: Reactjs, Nodejs, typescript, html, css, MaterialUI
+   - Reasoning: React and MaterialUI were chosen as they are responsive and used within other Fire Lab projects
+2. **Backend**
+   - Dependecies: Python, Flask, C++ Swig Bindings
+   - Reasoing: Code for calculations was either already written in python, or could be used through C++ SWIG Bindings. 
 
 ---
 
-## Technologies Used 
-
-1. React
-  - Chosen for user responsiveness, already used at the lab, and works well as the project gains complexity
-2. Python
-  - Chosen for ease of use and learning opportunity with defining SWIG Bindings
-  
 ## Frontend Overview
 
-1. cd into frontend
-2. install the neccessary dependencies
-3. run npm start to create the build folder
-4. run npm run to host the frontend
-  - should be hosted at http://localhost:3000
+1. Navigate to the `frontend` directory:
+   ```bash
+   cd frontend
+   ```
+2. Install the necessary dependencies:
+   ```bash
+   npm install
+   ```
+4. Host the frontend locally:
+   ```bash
+   npm start
+   ```
+   - The application should be accessible at [http://localhost:3000](http://localhost:3000). Note: Component's handleSubmit functions request destinations may need changed. 
+
+---
 
 ## Backend Overview
 
-1. cd into Wind Profile Calculator/backend
-2. set up a virtual environment for the dependencies of python
-  - the SWIG Bindings will requires python 3.8.10
-3. run python3 backend.py to host the server locally
+1. Navigate to the backend directory:
+   ```bash
+   cd Wind\ Profile\ Calculator/backend
+   ```
+2. Set up a virtual environment for Python dependencies:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate 
+   ```
+4. Run the backend server locally:
+   ```bash
+   python3 backend.py
+   ```
+---
 
 ### Computation Code
 
-1. Canopy Flow can be found at
-2. The Log Profile Calculator can be found at 
+The calculations for the wind profiles is handled by these files:
+- **Canopy Flow**: Handles wind profile calculations with canopies, located at (Canopy Flow)[https://github.com/firelab/canopy-flow] repo. 
+- **Log Profile Calculator**:  Handled wind profile calculations without canopies, located at 
 
-## Hosting Information
+---
 
-This is located in the readme for the NinjaStorm Server Repo
-- [NinjaStorm](https://github.com/firelab/NinjaStorm)
+## Deployment
+
+This is handled automatically through Github Actions using the build_and_deploy.yml script. Deployment information can be found at [NinjaStorm](https://github.com/firelab/NinjaStorm). 
+
+
+
