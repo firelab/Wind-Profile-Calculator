@@ -3,8 +3,6 @@ import { LineChart } from '@mui/x-charts/LineChart';
 interface ChartProps {
     heights: number[];
     windSpeeds: number[];
-    inputHeightIndex: number;
-    desiredOutputHeightIndex: number;
 }
 
 export default function Chart({ heights, windSpeeds}: ChartProps) {

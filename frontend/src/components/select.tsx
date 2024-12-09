@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 
 interface SelectMenuProps {
-  options: { value: string; label: string }[]; // Array of option objects with value and label
-  label: string; // Label for the select input
-  onChange: (value: string) => void; // Prop to handle value changes
+  options: { value: string; label: string }[];
+  label: string; 
+  onChange: (value: string) => void; 
   disabled: boolean;
 }
 
 const SelectMenu: React.FC<SelectMenuProps> = ({ options, label, onChange, disabled }) => {
-  const [selectedValue, setSelectedValue] = useState<string>(''); // State to hold the selected value
+  const [selectedValue, setSelectedValue] = useState<string>(''); 
 
   const handleChange = (event: SelectChangeEvent) => {
-    const newValue = event.target.value; // Get the new value from the event
-    setSelectedValue(newValue); // Update state with selected value
-    onChange(newValue); // Call the onChange prop with the new value
+    const newValue = event.target.value; 
+    setSelectedValue(newValue); 
+    onChange(newValue); 
   };
 
   return (
@@ -24,7 +24,7 @@ const SelectMenu: React.FC<SelectMenuProps> = ({ options, label, onChange, disab
         labelId="select-label"
         value={selectedValue}
         label={label}
-        onChange={handleChange} // Attach onChange handler
+        onChange={handleChange}
         disabled={disabled}
       >
         {options.map((option) => (

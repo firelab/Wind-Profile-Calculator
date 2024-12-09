@@ -10,7 +10,7 @@ import Chart from './components/chart';
 import SelectMenu from './components/select';
 import GitHubButton from './components/gitHubBtn';
 import InfoButton from './components/infoBtn';
-import { Box, Grid2, Typography, FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@mui/material';
+import { Box, Grid2, Typography} from '@mui/material';
 import { useState } from 'react';
 
 export default function App() {
@@ -101,11 +101,11 @@ export default function App() {
         </Grid2>
   
         <Grid2
-          size="auto"
+          size={{ xs: 12, sm: 8, md: 8, lg: 10, xl: 10 }}
           sx={{ display: 'flex', flexDirection: 'column', height: '80vh', overflow: 'visible' }}
         >
           <Box sx={{ flexGrow: 1, minHeight: 0, overflow: 'visible'}}>
-            <Chart heights={chartData.heights} windSpeeds={chartData.windSpeeds} inputHeightIndex={chartData.inputHeightIndex} desiredOutputHeightIndex={chartData.desiredOutputHeightIndex} />
+            <Chart heights={chartData.heights} windSpeeds={chartData.windSpeeds} />
           </Box>
         </Grid2>
       </Grid2>

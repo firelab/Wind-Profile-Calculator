@@ -1,8 +1,3 @@
-'''
-Filename: backend.py
-Description: Acts as the backend for the wind profile calculator web app. Uses a log profile calculator python script as well as swig bindings that use a C++ canopy flow program. 
-'''
-
 import sys
 import os
 from flask import Flask, request, jsonify
@@ -19,6 +14,7 @@ CORS(app)
 
 @app.route('/windprofilecalculator/api/calculate', methods=['POST'])
 def calculate():
+    
     data = request.json  
     dist = data.get('distribution')  
     desiredOutputHeight = data.get('desiredOutputHeight')
