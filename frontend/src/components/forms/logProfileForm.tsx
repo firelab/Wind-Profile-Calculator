@@ -21,7 +21,8 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post("https://ninjastorm.firelab.org/windprofilecalculator/api", formData);
+            const response = await axios.post("http://localhost:5000//windprofilecalculator/api/calculate", formData)
+            //const response = await axios.post("https://ninjastorm.firelab.org/windprofilecalculator/api/calculate", formData);
             onSubmit(response.data);
         } catch (error) {
             console.error('Error submitting form:', error);
@@ -32,7 +33,7 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
         <Box
             display="flex"
             flexDirection="column"
-            gap={2}
+            gap={3}
         >
             <Typography
                 variant="h6"
@@ -41,18 +42,8 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
                 alignSelf="flex-start"
                 sx={{ marginBottom: -1 }}
             >
-                Form
+                Wind Profile Inputs
             </Typography>
-            <TextField
-                required
-                id="z0"
-                label="z0 [m]"
-                type="number"
-                value={formData.z0}
-                onChange={handleChange}
-                inputProps={{ min: 0 }}
-                fullWidth
-            />
             <TextField
                 required
                 id="inputWindSpeed"
@@ -83,6 +74,17 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
                 inputProps={{ min: 0 }}
                 fullWidth
             />
+            <TextField
+                required
+                id="z0"
+                label="z0 [m]"
+                type="number"
+                value={formData.z0}
+                onChange={handleChange}
+                inputProps={{ min: 0 }}
+                fullWidth
+            />
+
             <Button variant="contained" onClick={handleSubmit}>
                 Submit
             </Button>

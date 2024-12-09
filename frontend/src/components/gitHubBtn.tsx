@@ -2,9 +2,8 @@ import React from 'react';
 import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
-const GitButton: React.FC = () => {
+const GitHubButton: React.FC = () => {
   const handleClick = () => {
-    // Open the URL in a new tab
     window.open('https://github.com/firelab/canopy-flow/', '_blank');
   };
 
@@ -15,4 +14,4 @@ const GitButton: React.FC = () => {
   );
 }
 
-export default GitButton;
+export default GitHubButton;
