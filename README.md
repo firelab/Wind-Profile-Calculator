@@ -42,7 +42,7 @@ The Firelab has developed a model that can calculatate the wind profile based on
 
 1. Navigate to the backend directory:
    ```bash
-   cd Wind\ Profile\ Calculator/backend
+   cd backend
    ```
 2. Set up a virtual environment for Python dependencies:
    ```bash
