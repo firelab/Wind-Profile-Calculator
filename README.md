@@ -1,6 +1,6 @@
 # Wind Profile Calculator
 
-The Fire Lab has developed a model that can calculatate the wind profile based on different canopy distributions. This web application allows users to interact with the model and displays a visual representation of the wind profile and canopy. It can be found [here](https://ninjastorm.firelab.org).
+The Fire Lab developed a model that can calculate the wind profile based on different canopy distributions. This web application allows users to interact with the model and displays a visual representation of the wind profile and canopy. It can be found [here](https://ninjastorm.firelab.org).
 
 ## Table of Contents
 
@@ -66,7 +66,7 @@ The Fire Lab has developed a model that can calculatate the wind profile based o
 
 The calculations for the wind profiles is handled by these files:
 - **Canopy Flow**: Handles wind profile calculations with canopies, located at [Canopy Flow](https://github.com/firelab/canopy-flow) repo. 
-- **Log Profile Calculator**:  Handled wind profile calculations without canopies, located at 
+- **Log Profile Calculator**:  Handled wind profile calculations without canopies, formulas for computation are described in this [article](https://en.wikipedia.org/wiki/Log_wind_profile).  
 
 ---
 
