@@ -33,6 +33,6 @@ jobs:
       run: |
         # Transfer build folder directly to the server
         scp -o StrictHostKeyChecking=no -r ./frontend/build/* mason@ninjastorm.firelab.org:/var/www/html/windprofilecalculator
-        scp -o StrictHostKeyChecking=no -r ./backend* mason@ninjastorm.firelab.org:/home/mason/WPCBackend
+        scp -o StrictHostKeyChecking=no -r ./backend/* mason@ninjastorm.firelab.org:/home/mason/WPCBackend
 
 
