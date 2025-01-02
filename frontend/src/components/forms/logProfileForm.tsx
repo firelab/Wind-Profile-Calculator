@@ -33,14 +33,14 @@ export default function LogProfileForm({ onSubmit }: { onSubmit: (data: any) => 
         <Box
             display="flex"
             flexDirection="column"
-            gap={3}
+            gap={2}
         >
             <Typography
                 variant="h6"
                 component="h2"
                 gutterBottom
                 alignSelf="flex-start"
-                sx={{ marginBottom: -1 }}
+                sx={{ marginBottom: 0 }}
             >
                 Wind Profile Inputs
             </Typography>
