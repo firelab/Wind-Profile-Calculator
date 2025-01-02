@@ -28,7 +28,7 @@ export default function App() {
 
   const handleCanopyChange = (value: string) => {
     setCanopyType(value);
-    setDistributionType(''); // Reset distribution type when canopy type changes
+    setDistributionType(''); 
   };
 
   const distOptions = [
@@ -45,6 +45,7 @@ export default function App() {
   ];
 
   return (
+    <>
     <Box sx={{ p: 2 }}>
       <Grid2 container alignItems="center" sx={{ mb: 3 }}>
         <Grid2>
@@ -56,23 +57,18 @@ export default function App() {
           <GitHubButton />
           <InfoButton />
         </Grid2>
-      </Grid2>
-      <Grid2 container spacing={6}>
-        <Grid2
-          size={{ xs: 12, sm: 4, md: 2, lg: 2, xl: 2}}
-          sx={{ display: 'flex', flexDirection: 'column', gap: 2}}
-        >
-          <Box 
-          display="flex" 
-          flexDirection="column" 
-          gap={3}
-        >
+        </Grid2>
+    </Box>
+    
+    <Box sx={{ p: 2, width: '100%', height: '100%' }}>
+      <Grid2 container alignItems="left" sx={{ mb: 3, gap: 2}}>
+        <Grid2 container direction="column" sx={{width: '200px', gap: 2}}>
           <Typography
             variant="h6"
             component="h2"
             gutterBottom
             alignSelf="flex-start"
-            sx={{ marginBottom: -1 }}
+            sx={{ marginBottom: 0 }}
           >
             Canopy Settings
           </Typography>
@@ -89,7 +85,6 @@ export default function App() {
             onChange={handleDistributionChange}
             disabled={canopyType !== '0'} 
           />
-          </Box>
   
           {distributionType === '0' && <UniformDistributionForm onSubmit={handleFormSubmit} />}
           {distributionType === '1' && <AsymmetricGaussianForm onSubmit={handleFormSubmit} />}
@@ -100,16 +95,12 @@ export default function App() {
           {canopyType === '1' && <LogProfileForm onSubmit={handleFormSubmit} />}
         </Grid2>
   
-        <Grid2
-          size={{ xs: 12, sm: 8, md: 8, lg: 10, xl: 10 }}
-          sx={{ display: 'flex', flexDirection: 'column', height: '80vh', overflow: 'visible' }}
-        >
-          <Box sx={{ flexGrow: 1, minHeight: 0, overflow: 'visible'}}>
+        <Grid2 size="grow">
             <Chart heights={chartData.heights} windSpeeds={chartData.windSpeeds} />
-          </Box>
         </Grid2>
-      </Grid2>
+        </Grid2>
     </Box>
+    </>
   );
   
 }
