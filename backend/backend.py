@@ -17,8 +17,6 @@ def calculate():
     
     data = request.json  
     dist = data.get('distribution')  
-    desiredOutputHeight = data.get('desiredOutputHeight')
-    inputHeight = data.get('inputHeight')
 
     inputHeightIndex = None
     desiredOutputHeightIndex = None
@@ -138,4 +136,4 @@ def calculate():
     return jsonify(responseData) 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5002)
