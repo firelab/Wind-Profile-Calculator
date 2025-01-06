@@ -29,8 +29,8 @@ export default function MassmanDistributionForm({ onSubmit }: { onSubmit: (data:
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post("http://localhost:5002//windprofilecalculator/api/calculate", formData);
-            //const response = await axios.post("https://ninjastorm.firelab.org/windprofilecalculator/api/calculate", formData);
+            //const response = await axios.post("http://0.0.0.0:5002//windprofilecalculator/api/calculate", formData);
+            const response = await axios.post("https://ninjastorm.firelab.org/windprofilecalculator/api/calculate", formData);
             onSubmit(response.data);
         } catch (error) {
             console.error('Error submitting form:', error);
